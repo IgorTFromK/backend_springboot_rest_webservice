@@ -38,11 +38,11 @@ public class StudentService implements IStudentService {
 	@Override
 	public boolean deleteStudent(long id) {
 		
-		Student student = ((Optional<Student>) studentRepository.findById(id)).get();
-		if(student == null ) {
+		Optional<Student> student = (Optional<Student>) studentRepository.findById(id);
+		if(student.isEmpty()) {
 			return false;
 		}
-		for(Video video: student.getVideos()) {
+		for(Video video: student.get().getVideos()) {
 			videoService.deletedVideo(video.getId());
 		}
 		studentRepository.deleteById(id);
