@@ -1,5 +1,6 @@
 package com.example.backend.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,27 +41,18 @@ public class VideoService implements IVideoService{
 
 	@Override
 	public List<Video> findAllVideos(long id) {
+		int tmp = 1;
+		Optional<Student> student = (Optional<Student>) studentRepository.findById(id);
+		if(!student.isEmpty()) {
+			return student.get().getVideos();
 		
-		Student student = ((Optional<Student>) studentRepository.findById(id)).get();
-		if(student != null) {
-			Video video = 	student.getVideos().get(0);
-			if( video != null) {
-				System.out.println(video.getTitle());
-			}
 		}
-		
-		return (List<Video>) videoRepository.findAll();
-		
-	}
+			return new ArrayList<Video>();
+		}
 
 	@Override
 	public boolean deletedVideo(long id) {
-		Video video = ((Optional<Video>) videoRepository.findById(id)).get();
-		if(video == null ) {
-			return false;
-		}
-		video.setDeleted(true);
-		videoRepository.save(video);
+		videoRepository.deleteById(id);
 		return true;
 	}
 

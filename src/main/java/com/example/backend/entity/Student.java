@@ -18,9 +18,8 @@ public class Student {
 	private long id;
 	private String firstname;
 	private String lastname;
-	//@JsonIgnore
+	@JsonIgnore
 	private boolean deleted = false;
-	
 	@JsonIgnore
 	@OneToMany(mappedBy = "student")
 	private List<Video> videos;

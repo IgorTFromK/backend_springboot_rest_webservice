@@ -37,6 +37,7 @@ public class StudentService implements IStudentService {
 
 	@Override
 	public boolean deleteStudent(long id) {
+		
 		Student student = ((Optional<Student>) studentRepository.findById(id)).get();
 		if(student == null ) {
 			return false;
@@ -44,8 +45,7 @@ public class StudentService implements IStudentService {
 		for(Video video: student.getVideos()) {
 			videoService.deletedVideo(video.getId());
 		}
-		student.setDeleted(true);
-		studentRepository.save(student);
+		studentRepository.deleteById(id);
 		return true;
 	}
 	
