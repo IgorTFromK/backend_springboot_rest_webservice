@@ -1,4 +1,4 @@
-package com.example.backend.controller;
+package com.example.backend.restcontroller;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,12 +16,12 @@ import com.example.backend.entity.Student;
 import com.example.backend.repository.IStudentService;
 
 @RestController
-public class StudentController {
+public class StudentRestController {
 
 	@Autowired
 	IStudentService studentService;
 	
-	public StudentController() {
+	public StudentRestController() {
 		System.out.println("UserController");
 	}
 	

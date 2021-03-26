@@ -41,7 +41,6 @@ public class VideoService implements IVideoService{
 
 	@Override
 	public List<Video> findAllVideos(long id) {
-		int tmp = 1;
 		Optional<Student> student = (Optional<Student>) studentRepository.findById(id);
 		if(!student.isEmpty()) {
 			return student.get().getVideos();

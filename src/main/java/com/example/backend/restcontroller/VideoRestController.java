@@ -1,4 +1,4 @@
-package com.example.backend.controller;
+package com.example.backend.restcontroller;
 
 import java.util.List;
 
@@ -16,12 +16,12 @@ import com.example.backend.repository.IVideoService;
 
 @RestController
 @RequestMapping("/student/{student_id}")
-public class VideoController {
+public class VideoRestController {
 	
 	@Autowired
 	IVideoService videoService;
 	
-	public VideoController() {
+	public VideoRestController() {
 		System.out.println("VideoController");
 	}
 	
