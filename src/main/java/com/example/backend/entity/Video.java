@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Video {
 
@@ -14,10 +16,14 @@ public class Video {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	private String title;
+	@JsonIgnore
+	private boolean deleted = false;
 	
+	@JsonIgnore
 	@ManyToOne
     @JoinColumn(name="student_id")
 	private Student student;
+	
 	
 	public Video() {}
 
@@ -40,6 +46,22 @@ public class Video {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
 	}
 
 

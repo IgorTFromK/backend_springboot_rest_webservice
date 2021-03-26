@@ -18,14 +18,17 @@ public class Student {
 	private long id;
 	private String firstname;
 	private String lastname;
+	//@JsonIgnore
+	private boolean deleted = false;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "student")
 	private List<Video> videos;
 
-	public Student(long id, String name) {
+	public Student(long id, String firstname, String lastname) {
 		this.id = id;
-		this.firstname = name;
+		this.firstname = firstname;
+		this.lastname = lastname;
 	}
 	
 	public Student() {}
@@ -70,6 +73,14 @@ public class Student {
 	
 	public void removeVideo(Video video) {
 		videos.remove(video);
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 	
 	
